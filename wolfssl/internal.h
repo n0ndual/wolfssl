@@ -1457,7 +1457,7 @@ enum Misc {
 
 /* max cert chain peer depth */
 #ifndef MAX_CHAIN_DEPTH
-    #define MAX_CHAIN_DEPTH 9
+    #define MAX_CHAIN_DEPTH 64
 #endif
 
 /* max size of a certificate message payload */

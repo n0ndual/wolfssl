@@ -8965,7 +8965,9 @@ int wolfSSL_DTLS_SetCookieSecret(WOLFSSL* ssl,
             FALL_THROUGH;
 
         case FIRST_REPLY_DONE :
+          printf("should send client cert here!\n");
             #if !defined(NO_CERTS) && !defined(WOLFSSL_NO_CLIENT_AUTH)
+                      printf("should send client cert here!\n");
                 #ifdef WOLFSSL_TLS13
                     if (ssl->options.tls1_3)
                         return wolfSSL_connect_TLSv13(ssl);
@@ -9001,8 +9003,11 @@ int wolfSSL_DTLS_SetCookieSecret(WOLFSSL* ssl,
             FALL_THROUGH;
 
         case FIRST_REPLY_SECOND :
+            printf("should send client cert here!\n");
             #if !defined(NO_CERTS) && !defined(WOLFSSL_NO_CLIENT_AUTH)
+                        printf("should send client cert here!\n");
                 if (ssl->options.sendVerify) {
+                              printf("should send client cert here!\n");
                     if ( (ssl->error = SendCertificateVerify(ssl)) != 0) {
                         WOLFSSL_ERROR(ssl->error);
                         return WOLFSSL_FATAL_ERROR;

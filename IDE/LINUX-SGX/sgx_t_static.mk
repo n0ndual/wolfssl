@@ -1,7 +1,9 @@
 ######## Intel(R) SGX SDK Settings ########
 SGX_SDK ?= /opt/intel/sgxsdk
-SGX_MODE ?= SIM
+SGX_MODE ?= HW
 SGX_ARCH ?= x64
+SGX_DEBUG ?= 0
+SGX_PRERELEASE ?= 1
 WOLFSSL_ROOT ?= $(shell readlink -f ../..)
 
 ifeq ($(shell getconf LONG_BIT), 32)
@@ -45,7 +47,20 @@ endif
 Crypto_Library_Name := sgx_tcrypto
 
 Wolfssl_C_Extra_Flags := -DWOLFSSL_SGX
+Wolfssl_C_Extra_Flags += -DHAVE_ECC_DHE
+Wolfssl_C_Extra_Flags += -DHAVE_ECC_CDH
+Wolfssl_C_Extra_Flags += -DHAVE_ECC_SECPR2
+Wolfssl_C_Extra_Flags += -DHAVE_ECC_SECPR3
+Wolfssl_C_Extra_Flags += -DHAVE_TLS_EXTENSIONS
+Wolfssl_C_Extra_Flags += -DHAVE_SUPPORTED_CURVES
+Wolfssl_C_Extra_Flags += -DHAVE_ALL_CURVES
+Wolfssl_C_Extra_Flags += -DWOLFSSL_SHA512
+Wolfssl_C_Extra_Flags += -DWOLFSSL_DER_TO_PEM
+Wolfssl_C_Extra_Flags += -DWOLFSSL_CERT_GEN
+Wolfssl_C_Extra_Flags += -DWOLFSSL_CERT_REQ
+Wolfssl_C_Extra_Flags += -DUSER_TIME
 Wolfssl_C_Files :=$(WOLFSSL_ROOT)/wolfcrypt/src/aes.c\
+                                        $(WOLFSSL_ROOT)/wolfcrypt/src/wc_port.c\
 					$(WOLFSSL_ROOT)/wolfcrypt/src/arc4.c\
 					$(WOLFSSL_ROOT)/wolfcrypt/src/asn.c\
 					$(WOLFSSL_ROOT)/wolfcrypt/src/blake2b.c\
@@ -74,7 +89,6 @@ Wolfssl_C_Files :=$(WOLFSSL_ROOT)/wolfcrypt/src/aes.c\
 					$(WOLFSSL_ROOT)/wolfcrypt/src/pkcs7.c\
 					$(WOLFSSL_ROOT)/wolfcrypt/src/pkcs12.c\
 					$(WOLFSSL_ROOT)/wolfcrypt/src/poly1305.c\
-					$(WOLFSSL_ROOT)/wolfcrypt/src/wc_port.c\
 					$(WOLFSSL_ROOT)/wolfcrypt/src/wolfmath.c\
 					$(WOLFSSL_ROOT)/wolfcrypt/src/pwdbased.c\
 					$(WOLFSSL_ROOT)/wolfcrypt/src/rabbit.c\

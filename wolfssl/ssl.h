@@ -500,7 +500,7 @@ WOLFSSL_API int wolfSSL_is_static_memory(WOLFSSL* ssl,
                                             WOLFSSL_MEM_CONN_STATS* mem_stats);
 #endif
 
-#if !defined(NO_FILESYSTEM) && !defined(NO_CERTS)
+//#if !defined(NO_FILESYSTEM) && !defined(NO_CERTS)
 
 WOLFSSL_API int wolfSSL_CTX_use_certificate_file(WOLFSSL_CTX*, const char*, int);
 WOLFSSL_API int wolfSSL_CTX_use_PrivateKey_file(WOLFSSL_CTX*, const char*, int);
@@ -542,7 +542,7 @@ WOLFSSL_API int wolfSSL_use_RSAPrivateKey_file(WOLFSSL*, const char*, int);
     /* load NTRU private key blob */
 #endif
 
-#endif /* !NO_FILESYSTEM && !NO_CERTS */
+//#endif /* !NO_FILESYSTEM && !NO_CERTS */
 
 WOLFSSL_API WOLFSSL_CTX* wolfSSL_CTX_new(WOLFSSL_METHOD*);
 WOLFSSL_API WOLFSSL* wolfSSL_new(WOLFSSL_CTX*);
